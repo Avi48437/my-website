@@ -1,0 +1,35 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "Avi | Personal Website"
+theme = "PaperMod"
+
+[params.profileMode]
+  enabled = true
+  title = "Avi"
+  subtitle = "Student | Web Developer | Learner"
+  imageUrl = "images/profile.jpg"
+  imageTitle = "Avi"
+  imageWidth = 150
+  imageHeight = 150
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/Avi48437"
+
+[[params.socialIcons]]
+  name = "email"
+  url = "mailto:avi48437@example.com"
+
+[params.homeInfoParams]
+  Title = "Welcome 👋"
+  Content = "This is my personal website where I document my learning and projects."
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 1
+
+[[menu.main]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 2

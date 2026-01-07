@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hi, I&#39;m Avi 👋 on Avi | Personal Website</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Hi, I&#39;m Avi 👋 on Avi | Personal Website</description>
+    <generator>Hugo -- 0.154.3</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Hi 👋&lt;br&gt;
+I am &lt;strong&gt;Avi&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I am learning:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hugo&lt;/li&gt;
+&lt;li&gt;Git &amp;amp; GitHub&lt;/li&gt;
+&lt;li&gt;Web Development&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;education&#34;&gt;Education&lt;/h3&gt;
+&lt;p&gt;I have completed my Bachelors in Statistics from the well knowned historical institute the Indian Statistical Institute from its main brach Kolkata. I have also completed my Master&amp;rsquo;s degree from there&lt;/p&gt;
+&lt;h3 id=&#34;interests&#34;&gt;Interests&lt;/h3&gt;
+&lt;p&gt;I am interested in Probability, Number theory, Statistics, Cricket, Football, Cooking, Book Reading etc.&lt;/p&gt;
+&lt;p&gt;This is my personal website built using &lt;strong&gt;Hugo&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My First Project</title>
+      <link>http://localhost:1313/projects/my-first-project/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/my-first-project/</guid>
+      <description>&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;This is my first project using Hugo.&lt;/p&gt;
+&lt;h3 id=&#34;technologies&#34;&gt;Technologies&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Hugo&lt;/li&gt;
+&lt;li&gt;Markdown&lt;/li&gt;
+&lt;li&gt;GitHub&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>My Second Project</title>
+      <link>http://localhost:1313/projects/my-second-project/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/my-second-project/</guid>
+      <description>&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;This is my second project using Hugo.&lt;/p&gt;
+&lt;h3 id=&#34;technologies&#34;&gt;Technologies&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Hugo&lt;/li&gt;
+&lt;li&gt;Markdown&lt;/li&gt;
+&lt;li&gt;GitHub&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>
