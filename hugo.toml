@@ -4,14 +4,12 @@ languageCode = "en-us"
 title = "Avi | Personal Website"
 theme = "PaperMod"
 
-[params.profileMode]
-  enabled = true
-  title = "Avi"
-  subtitle = "Student | Web Developer | Learner"
-  imageUrl = "images/profile.jpg"
-  imageTitle = "Avi"
-  imageWidth = 150
-  imageHeight = 150
+[params]
+customCSS = ["css/custom.css"]
+
+  [params.label]
+    icon = "/images/profile.jpg"
+    text = "Avinandan Roy"
 
 [[params.socialIcons]]
   name = "github"
@@ -25,12 +23,34 @@ theme = "PaperMod"
   Title = "Welcome 👋"
   Content = "This is my personal website where I document my learning and projects."
 
-[[menu.main]]
-  name = "About"
-  url = "/about/"
-  weight = 1
+[menu]
 
-[[menu.main]]
-  name = "Projects"
-  url = "/projects/"
-  weight = 2
+  [[menu.main]]
+    name = "Bio"
+    url = "/bio/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Notes"
+    url = "/notes/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Blogs"
+    url = "/blogs/"
+    weight = 3
+
+  [[menu.main]]
+    name = "Links"
+    url = "/links/"
+    weight = 4
+
+  [[menu.main]]
+    name = "Travel"
+    url = "/travel/"
+    weight = 5
+
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 6

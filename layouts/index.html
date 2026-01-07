@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+<section class="hero">
+  <div class="hero-overlay">
+   <div class="hero-inner">
+    <div class="hero-photo">
+      <img src="{{ "images/profile.jpg" | relURL }}"
+           alt="Avinandan Roy"
+           class="hero-img" />
+    </div>
+
+    <div class="hero-text">
+      <h1>Hi, I’m Avinandan</h1>
+
+      <p class="hero-lead">
+        Student | Mathematics | Statistics
+      </p>
+
+      <p>
+        Welcome to my homepage. I am currently a 1st yr. PhD. student at
+        <a href="https://sds.wustl.edu/" target="_blank" rel="noopener"
+           style="color:#a51417;font-weight:600;">
+          Statistics & Data Science
+        </a>
+        at
+        <a href="https://washu.edu/" target="_blank" rel="noopener"
+           style="color:#9c1416;font-weight:600;">
+          Washington University in St. Louis
+        </a>.
+      </p>
+
+      <blockquote class="hero-quote">
+        “Mathematics is the art of giving the same name to different things.”
+      </blockquote>
+
+      <nav class="hero-nav">
+        <a href="{{ "bio/" | relURL }}">Bio</a>
+        <a href="{{ "notes/" | relURL }}">Notes</a>
+        <a href="{{ "blogs/" | relURL }}">Blogs</a>
+        <a href="{{ "travel/" | relURL }}">Travel</a>
+      </nav>
+    </div>
+    <div>
+  </div>
+</section>
+
+{{ end }}

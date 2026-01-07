@@ -1,0 +1,1 @@
+.hero{min-height:80vh;background:url(../images/intro-bg.jpg)50%/cover no-repeat;display:flex;justify-content:center;align-items:center}.hero-img{width:clamp(110px,18vw,200px);aspect-ratio:1/1;border-radius:50%;object-fit:cover;border:4px solid #fff}
