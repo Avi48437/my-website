@@ -2,23 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://avi48437.github.io/my-website/about/</loc>
     <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/projects/my-first-project/</loc>
+    <loc>https://avi48437.github.io/my-website/projects/my-first-project/</loc>
     <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/projects/my-second-project/</loc>
+    <loc>https://avi48437.github.io/my-website/projects/my-second-project/</loc>
     <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://avi48437.github.io/my-website/projects/my-third-project/</loc>
     <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://avi48437.github.io/my-website/</loc>
     <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://avi48437.github.io/my-website/projects/</loc>
+    <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://avi48437.github.io/my-website/categories/</loc>
+  </url><url>
+    <loc>https://avi48437.github.io/my-website/tags/</loc>
   </url>
 </urlset>

@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://avi48437.github.io/my-website/"
 languageCode = "en-us"
 title = "Avi | Personal Website"
 theme = "PaperMod"
