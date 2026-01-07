@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Avinandan Roy on Avi | Personal Website</title>
-    <link>http://localhost:1313/my-website/</link>
+    <link>https://avi48437.github.io/my-website/</link>
     <description>Recent content in Avinandan Roy on Avi | Personal Website</description>
     <generator>Hugo -- 0.154.3</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/my-website/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://avi48437.github.io/my-website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
-      <link>http://localhost:1313/my-website/about/</link>
+      <link>https://avi48437.github.io/my-website/about/</link>
       <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/my-website/about/</guid>
+      <guid>https://avi48437.github.io/my-website/about/</guid>
       <description>&lt;p&gt;Hi 👋&lt;br&gt;
 I am &lt;strong&gt;Avi&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;I am learning:&lt;/p&gt;
