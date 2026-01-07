@@ -27,30 +27,30 @@ customCSS = ["css/custom.css"]
 
   [[menu.main]]
     name = "Bio"
-    url = "/bio/"
+    pageRef = "/bio/"
     weight = 1
 
   [[menu.main]]
     name = "Notes"
-    url = "/notes/"
+    pageRef = "/notes/"
     weight = 2
 
   [[menu.main]]
     name = "Blogs"
-    url = "/blogs/"
+    pageRef = "/blogs/"
     weight = 3
 
   [[menu.main]]
     name = "Links"
-    url = "/links/"
+    pageRef = "/links/"
     weight = 4
 
   [[menu.main]]
     name = "Travel"
-    url = "/travel/"
+    pageRef = "/travel/"
     weight = 5
 
   [[menu.main]]
     name = "Contact"
-    url = "/contact/"
+    pageRef = "/contact/"
     weight = 6
