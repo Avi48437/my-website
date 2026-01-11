@@ -1,0 +1,36 @@
+{{- /* PaperMod override: support author lists from Quarto */ -}}
+
+{{- $date := .Date -}}
+{{- $readingTime := .ReadingTime -}}
+
+{{- $authors := .Params.authors | default .Params.author | default site.Params.author -}}
+
+<div class="post-meta">
+  {{- /* AUTHORS */ -}}
+  {{- if $authors -}}
+    <span class="post-author">
+      {{- if reflect.IsSlice $authors -}}
+        {{- range $i, $a := $authors -}}
+          {{- if $i }}, {{ end -}}
+          {{- if and (reflect.IsMap $a) (isset $a "name") -}}
+            {{- index $a "name" -}}
+          {{- else -}}
+            {{- $a -}}
+          {{- end -}}
+        {{- end -}}
+      {{- else -}}
+        {{- $authors -}}
+      {{- end -}}
+    </span>
+    <span class="post-meta-sep">·</span>
+  {{- end -}}
+
+  {{- /* DATE */ -}}
+  <span>{{ $date.Format "January 2, 2006" }}</span>
+
+  {{- /* READING TIME (optional, matches PaperMod style) */ -}}
+  {{- if not (or (.Params.hideReadingTime) (site.Params.hideReadingTime)) -}}
+    <span class="post-meta-sep">·</span>
+    <span>{{ $readingTime }} min</span>
+  {{- end -}}
+</div>

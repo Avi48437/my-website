@@ -1,0 +1,9 @@
+{{ $title := .Get "title" | default "Theorem" }}
+{{ $label := .Get "label" | default "" }}
+
+<div class="thm-block" {{ if $label }}id="{{ $label }}"{{ end }}>
+  <div class="thm-title">{{ $title }}</div>
+  <div class="thm-body">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{{ $title := .Get "title" | default "Lemma" }}
+{{ $label := .Get "label" | default "" }}
+
+<div class="thm-block lemma" {{ if $label }}id="{{ $label }}"{{ end }}>
+  <div class="thm-title">{{ $title }}</div>
+  <div class="thm-body">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

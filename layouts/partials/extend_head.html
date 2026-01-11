@@ -1,2 +1,9 @@
 {{- $style := resources.Get "css/custom.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+{{- $navjs := resources.Get "js/nav-overflow.js" | minify | fingerprint -}}
+<script defer src="{{ $navjs.RelPermalink }}"></script>
+
+{{ if or .Params.math site.Params.math }}
+  {{ partial "math.html" . }}
+{{ end }}

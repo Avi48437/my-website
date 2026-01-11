@@ -1,0 +1,239 @@
+---
+title: "Nonparametric Regression Model with Tree-structured Response"
+author:
+- name: "Yuan Wang"
+- name: "J.S. Marron"
+- name: "Burcu Aydin"
+engine: knitr
+date: 2026-01-10
+math: true
+katex_macros:
+  '\ind': '\operatorname{IND}'
+format:
+  hugo-md:
+    wrap: none
+    toc: false
+    code-fold: true
+bibliography: refs.bib
+citeproc: true
+link-citations: true
+reference-location: document
+nocite: '@*'
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+The goal of this paper is to study the regression on tree-structured data as response with age as the input variable, which is one kind of object oriented data and the analysis of this is called the *Object Oriented Data Analysis* (OODA).  @Aydin2009PCA took OODA on trees further by studying the dependence of the **principal component scores** on **age** through a **simple linear regression analysis**. The authors of this paper has generalized the notion of the locally weighted smoother to the tree space. The approach is a particular optimization problem and an efficient algorithm with **linear time** has been proposed for a complete solution. This paper addresses the relationship of the human brain artery trees with age.
+
+**Why Study Brain Artery Trees ?**: *"The study of brain artery trees has many target applications, including study of potential stroke victims, as well as screening for loci of pathologies such as brain tumors, see @Aydin2009PCA. In the 
+present data set, only normal brains (determined by prescreening) are considered, and the main goal is to understand general tendencies of change in the brains of adults, over the approximate age range 20 to 70."*
+
+Trees are non-Euclidean data even less than manifold data. That is why the authors have referred to the space of trees as **"strongly non-Euclidean"**.
+
+### Tree Representation and Brain Artery Data
+
+In this study, there are 98 healthy human subjects involved. Other covariates are also available, such as gender, handedness, and ethnicity, for each subject. As an early analysis on this subject they have only considered the branching structure topology of the trees: they consider the artery segments as nodes, and they consider the blood flow from one artery to another artery to be the edge direction. They have omitted the thickness of the veins, the length of the arteries, the angle and curvatures etc. geometric factors in this analysis.
+
+The trees considered here are binary trees with roots, where one particular node is designated as the **root**, and the **level** of a node is the total number of edges along the path of the root. For example, the level of the root node is zero. Between each pair of nodes connected by an edge, the one with the higher level is the **child**, and the other is the **parent** of the child node. A node with no children is called a **leaf** node. The set of all possible rooted binary trees is called the binary tree space and is denoted by $\mathcal{T}$. 
+
+```{r}
+#| include: false
+#| label: trees
+#| fig-width: 10
+#| fig-height: 10
+#| dpi: 300
+#| fig-align: center
+#| out-width: "100%"
+#| echo: false
+library(igraph)
+
+# Main Functions to create the rooted Binary Graphs
+make_tree_graph <- function(nodes) {
+  edges <- c()
+  for (i in nodes) {
+    parent <- floor(i / 2)
+    if (parent %in% nodes) {
+      edges <- c(edges, parent, i)
+    }
+  }
+  graph(edges = edges, directed = TRUE)
+}
+tree_layout <- function(g) {
+  ids <- as.numeric(V(g)$name)
+  levels <- floor(log2(ids))
+  x <- (ids - 2^levels) / 2^levels
+  y <- -levels
+  cbind(x, y)
+}
+add_missing_children <- function(nodes) {
+  dashed_edges <- c()
+  dashed_nodes <- c()
+  
+  for (p in nodes) {
+    left <- 2 * p
+    right <- 2 * p + 1
+    
+    if (!(left %in% nodes)) {
+      dashed_edges <- c(dashed_edges, p, left)
+      dashed_nodes <- c(dashed_nodes, left)
+    }
+    if (!(right %in% nodes)) {
+      dashed_edges <- c(dashed_edges, p, right)
+      dashed_nodes <- c(dashed_nodes, right)
+    }
+  }
+  
+  list(edges = dashed_edges, nodes = dashed_nodes)
+}
+draw_tree_paper_igraph <- function(present_nodes,name) {
+  
+  # ---- solid edges ----
+  solid_edges <- c()
+  for (i in present_nodes) {
+    parent <- floor(i / 2)
+    if (parent %in% present_nodes) {
+      solid_edges <- c(solid_edges, parent, i)
+    }
+  }
+  
+  # ---- dashed edges (missing children, one level only) ----
+  dashed_edges <- c()
+  dashed_nodes <- c()
+  
+  for (p in present_nodes) {
+    for (child in c(2*p, 2*p + 1)) {
+      if (!(child %in% present_nodes)) {
+        dashed_edges <- c(dashed_edges, p, child)
+        dashed_nodes <- c(dashed_nodes, child)
+      }
+    }
+  }
+  
+  # ---- all vertices ----
+  all_nodes <- sort(unique(c(present_nodes, dashed_nodes)))
+  all_nodes_chr <- as.character(all_nodes)
+  
+  # ---- create EMPTY graph ----
+  g <- make_empty_graph(n = length(all_nodes), directed = TRUE)
+  V(g)$name <- all_nodes_chr
+  
+  # ---- add edges ----
+  if (length(solid_edges) > 0) {
+    g <- add_edges(g, as.character(solid_edges))
+  }
+  if (length(dashed_edges) > 0) {
+    g <- add_edges(g, as.character(dashed_edges))
+  }
+  
+  # ---- edge styles ----
+  E(g)$lty <- c(
+    rep(1, length(solid_edges) / 2),
+    rep(2, length(dashed_edges) / 2)
+  )
+  E(g)$width <- 4   # 🔴 bold edges
+  
+  # ---- vertex styles ----
+  V(g)$shape <- "circle"
+  V(g)$size  <- 20
+  V(g)$label <- V(g)$name
+  V(g)$color <- "white"
+  V(g)$frame.width <- 2.5  # 🔴 bold node borders
+  
+  present_idx <- V(g)$name %in% as.character(present_nodes)
+  V(g)$shape[present_idx] <- "square"
+  V(g)$size[present_idx]  <- 20
+  
+  # ---- layout ----
+  ids <- as.numeric(V(g)$name)
+  levels <- floor(log2(ids))
+  x <- (ids - 2^levels) / 2^levels
+  y <- -levels
+  layout <- cbind(x, y)
+  
+  # ---- plot ----
+  plot(
+    g,
+    layout = layout,
+    edge.arrow.mode = 0,
+    vertex.label.cex = 1.5,
+    vertex.label.font = 2,
+    vertex.label.color = "black",
+    edge.color = "blue"
+  )
+  mtext(
+    name,
+    side = 1,      # bottom
+    line = 2,      # distance from plot
+    cex = 2,
+    font = 4
+  )
+}
+
+# Examples 
+par(mfrow = c(2, 2))
+
+draw_tree_paper_igraph(c(1, 2, 4),"t1")
+draw_tree_paper_igraph(c(1, 2, 3, 4, 6),"t2")
+draw_tree_paper_igraph(c(1, 2, 3, 5, 7),"t3")
+draw_tree_paper_igraph(c(1, 2, 3),"t4")
+
+
+```
+
+These trees are some examples of rooted binary trees. *Level-order index* has been used as described in @Wang2007OODA to uniquely identify each node of a binary tree. In the above figure, the example trees with different level-order index sets are as follows:
+
+$$
+\ind(t_1)=\\{1,2,4\\},\quad \ind(t_2)=\\{1,2,3,4,6\\},\quad \ind(t_3)=\\{1,2,3,5,7\\},\quad\ind(t_4)=\\{1,2,3\\}
+$$
+
+For two binary trees $t_1$ and $t_2$, the Hamming metric based on their level-order index sets is defined as 
+<span id="eq-1"></span>
+$$
+\begin{equation}
+    d_I(t_1,t_2):=\sum_{k=1}^{\infty}I\\{k\in\ind(t_1)\triangle \ind(t_2)\\},\tag{1}
+\end{equation}
+$$
+where $I\{\cdot\}$ is the indicator and $\triangle$ is the symmetric difference between two sets. The metric is named as **integer tree metric** in Wang and Marron (2007), which counts the total number of noncommon nodes between two trees. But some situations may arise where every node may not be treated equally, and in that case the weighted tree metric is defined as 
+
+<span id="eq-2"></span>
+$$
+\begin{equation}
+    d_I^{w}(t_1,t_2):=\sum_{k=1}^{\infty}\alpha_kI\\{k\in\ind(t_1)\triangle \ind(t_2)\\};\quad \alpha_k\ge 0.\tag{2}
+\end{equation}
+$$
+
+<span style="color: red;">*The data extraction and data visualization parts are not mentioned in this summary. For that, refer to Section 2.3 of the original paper.*</span>
+
+### Methodology
+
+Due to the non-Euclidean nature of tree space, $\mathcal{T}$, it is not straightforward to develop a simple linear regression. But at the heart of all classical Euclidean regression analysis, the fundamental concept relies on the conditional expectation. An analogous version of this has been made in the tree space in this paper. Let $T$ be a random tree from the space $(\mathcal{T},\mathcal{F},P(\theta))$, where $P(\theta)$ is a probability measure indexed by $\theta$. Frechet (1948) proposed the Frechet median, which is the minimizer of $\mathbb{E}d(X,m)$. Note that for the space $(\mathbb{R},|\cdot|)$, this leads to the usual conventional median. Similarly the authors have adopted this definition to define the Frechet median tree denoted by $\mu_F$; that is,
+<span id="eq-3"></span>
+$$
+\begin{equation}
+    \mu_F=\argmin_{m\in \mathcal{T}}\mathbb{E}d_I(T,m)\tag{3}
+\end{equation}
+$$
+
+and, correspondingly, the Frechet Variation about the center is quantified by
+<span id="eq-4"></span>
+$$
+\begin{equation}
+    V_F=\mathbb{E}d_I(T,\mu_F)\tag{4}
+\end{equation}
+$$
+
+Following these definitions, the sample version of the tree median and the variation are defined as 
+
+<span id="eq-5"></span>
+$$
+    \hat{\mu}\_F=\argmin_{m\in \mathcal{T}}\frac{1}{n}\sum_{i=1}^nd_I(t_i,m);\quad
+    \hat{V}\_F=\frac{1}{n}\sum_{i=1}^nd_I(t_i,\hat{\mu}\_F)\tag{5}
+$$
+
+where $t_1,\dots,t_n\sim P(\theta)$. @Wang2007OODA proposed an algorithm, *the majority rule* to address the median tree and suggested to take that tree which appears more than n/2 times in the tree sample and some or all nodes that appear exactly $n/2$ times (*Note that it is not necessary that the median tree appears in the sample you have drawn*). 
+
+
+
+## References

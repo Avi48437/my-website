@@ -1,0 +1,239 @@
+=====================================================
+QUARTO + HUGO (PaperMod) — PERSONAL CHEATSHEET
+=====================================================
+
+Author: Avinandan Roy
+Purpose: Quick reference for writing notes/articles in .qmd
+=====================================================
+
+
+-----------------------------------------------------
+1. YAML FRONT MATTER (BASIC TEMPLATE)
+-----------------------------------------------------
+
+--- 
+title: "Title of the Article"
+date: 2026-01-09 
+math: true
+format:
+  hugo-md:
+    toc: true
+    code-fold: true
+bibliography: refs.bib
+citeproc: true
+link-citations: true
+reference-location: document
+nocite: '@*'
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+IMPORTANT:
+- Do NOT use date: today
+- Do NOT use R expressions in date
+- Hugo only accepts real dates
+
+
+-----------------------------------------------------
+2. SECTIONS & HEADINGS
+-----------------------------------------------------
+
+# Section title
+## Subsection
+### Subsubsection
+
+
+-----------------------------------------------------
+3. MATHEMATICS
+-----------------------------------------------------
+
+Inline math:
+  $X \in \mathbb{R}$
+
+Display math:
+  $$
+  X = Y + Z
+  $$
+
+Aligned equations:
+  $$
+  \begin{aligned}
+  X &= Y + Z \\
+    &= W
+  \end{aligned}
+  $$
+
+Numbered equation (manual):
+  <span id="eq-name"></span>
+  $$
+  X = Y \tag{1}
+  $$
+
+Refer to equation:
+  See equation [Eq. (1)](#eq-name)
+
+
+-----------------------------------------------------
+4. THEOREM / LEMMA / DEFINITION / PROOF (HUGO SHORTCODES)
+-----------------------------------------------------
+
+Definition:
+  {{< definition title="Definition (Name)" label="def-name" >}}
+  Content here.
+  {{< /definition >}}
+
+Lemma:
+  {{< lemma title="Lemma (Name)" label="lem-name" >}}
+  Content here.
+  {{< /lemma >}}
+
+Proposition:
+  {{< proposition title="Proposition (Name)" label="prop-name" >}}
+  Content here.
+  {{< /proposition >}}
+
+Corollary:
+  {{< corollary title="Corollary (Name)" label="cor-name" >}}
+  Content here.
+  {{< /corollary >}}
+
+Proof:
+  {{< proof >}}
+  Proof goes here.
+  {{< /proof >}}
+
+Referencing:
+  See Lemma (#lem-name)
+  See Definition (#def-name)
+
+
+-----------------------------------------------------
+5. R CODE IN .QMD
+-----------------------------------------------------
+
+Basic R chunk:
+
+```{r}
+x <- rnorm(100)
+mean(x)
+
+HIDE CODE, SHOW OUTPUT:
+HOW TO WRITE:
+#| echo: false
+summary(x)
+
+SHOW CODE, HIDE OUTPUT:
+HOW TO WRITE:
+#| results: hide
+plot(x)
+
+-----------------------------------------------------
+6. CITATIONS & REFERENCES
+-----------------------------------------------------
+IN-TEXT CITATION:
+HOW TO WRITE:
+[@vershynin2018]
+
+NARRATIVE CITATION:
+HOW TO WRITE:
+@vershynin2018 shows that ...
+
+FORCE ALL REFERENCES TO APPEAR:
+HOW TO WRITE IN YAML:
+nocite: '@*'
+
+REFERENCES SECTION:
+HOW TO WRITE:
+
+References
+
+(DO NOT write anything below it)
+
+-----------------------------------------------------
+7. ITALICS & BOLD
+-----------------------------------------------------
+ITALIC TEXT:
+HOW TO WRITE:
+italic text
+
+BOLD TEXT:
+HOW TO WRITE:
+bold text
+
+ITALIC INSIDE MATH:
+HOW TO WRITE:
+$\textit{word}$
+
+-----------------------------------------------------
+8. COLORED TEXT (NORMAL TEXT)
+-----------------------------------------------------
+DO NOT use LaTeX \textcolor in prose.
+
+This is <span style="color: red;">red text</span>.
+
+(Shortcodes defined in layouts/shortcodes/)
+
+-----------------------------------------------------
+9. COLORED TEXT (MATH)
+-----------------------------------------------------
+HOW TO WRITE:
+$\color{red}{X}$
+
+OR USING MACROS:
+$\rd{X} + \bd{Y}$
+
+-----------------------------------------------------
+10. LINKS
+-----------------------------------------------------
+INTERNAL LINK (same page or site)
+HOW TO WRITE:
+
+[Link text](#section-id)
+
+EXAMPLE:
+[Go to Definition](#def-subg)
+
+
+EXTERNAL LINK (website)
+HOW TO WRITE:
+
+[Link text](https://example.com)
+
+EXAMPLE:
+[GitHub](https://github.com/Avi48437)
+
+
+EMAIL LINK
+HOW TO WRITE:
+
+[Link text](mailto:email@example.com)
+
+EXAMPLE:
+[Email me](mailto:avi48437@gmail.com)
+
+-----------------------------------------------------
+11. ICON LINKS
+-----------------------------------------------------
+ICONS LOCATION:
+static/icons/
+
+HOW TO WRITE IMAGE LINK:
+<img src='{{< relurl "icons/github.svg" >}}'>
+
+WRAP IMAGE WITH LINK:
+<a href="https://github.com/username">
+<img src='{{< relurl "icons/github.svg" >}}'>
+</a>
+
+-----------------------------------------------------
+10. BUILD AND SERVE
+-----------------------------------------------------
+RENDER A PAGE:
+HOW TO WRITE:
+quarto render content/notes/page/index.qmd --to hugo-md
+
+RUN LOCAL SERVER:
+HOW TO WRITE:
+hugo server --disableFastRender --ignoreCache --noHTTPCache

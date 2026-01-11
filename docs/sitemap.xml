@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://avi48437.github.io/my-website/about/</loc>
-    <lastmod>2026-01-07T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/</loc>
-    <lastmod>2026-01-07T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/papers/nonparametric-regression-model-with-tree-structured-response/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/blogs/</loc>
+    <loc>http://localhost:1313/papers/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/contact/</loc>
+    <loc>http://localhost:1313/contact/</loc>
+    <lastmod>2026-01-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/links/</loc>
+    <loc>http://localhost:1313/blogs/</loc>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/notes/</loc>
+    <loc>http://localhost:1313/links/</loc>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/travel/</loc>
+    <loc>http://localhost:1313/notes/</loc>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/bio/</loc>
+    <loc>http://localhost:1313/travel/</loc>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/categories/</loc>
+    <loc>http://localhost:1313/bio/</loc>
   </url><url>
-    <loc>https://avi48437.github.io/my-website/tags/</loc>
+    <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

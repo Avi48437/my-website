@@ -1,0 +1,103 @@
+{{- $pageMacros := .Params.katex_macros | default (index .Params "katex-macros") | default (dict) -}}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+/>
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js">
+</script>
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js">
+</script>
+
+<script>
+(function () {
+  const KATEX_MACROS = {
+    "\\R": "\\mathbb{R}",
+    "\\Eb": "\\mathbb{E}",
+    "\\Pb": "\\mathbb{P}",
+    "\\Var": "\\operatorname{Var}",
+    "\\Cov": "\\operatorname{Cov}",
+    "\\argmin": "\\operatorname*{arg\\,min}",
+    "\\argmax": "\\operatorname*{arg\\,max}",
+    "\\SubG": "\\text{Sub-Gaussian}",
+    "\\SubE": "\\text{Sub-Exponential}",
+    "\\Perp": "\\perp\\!\\!\\!\\perp",
+    "\\ceil": "\\left\\lceil #1 \\right\\rceil",
+    "\\floor": "\\left\\lfloor #1 \\right\\rfloor"
+  };
+
+  const PAGE_MACROS = {{ $pageMacros | jsonify | safeJS }};
+  Object.assign(KATEX_MACROS, PAGE_MACROS);
+
+  function stripMathDelims(s) {
+    return s
+      .replace(/^\\\(/, "")
+      .replace(/\\\)$/, "")
+      .replace(/^\\\[/, "")
+      .replace(/\\\]$/, "");
+  }
+
+  function renderPandocMathSpans() {
+    const inlineSpans = document.querySelectorAll("span.math.inline");
+    inlineSpans.forEach(el => {
+      if (el.querySelector(".katex")) return; // already rendered
+      const tex = stripMathDelims(el.textContent.trim());
+      try {
+        katex.render(tex, el, {
+          displayMode: false,
+          throwOnError: false,
+          macros: KATEX_MACROS
+        });
+      } catch (_) {}
+    });
+
+    const displaySpans = document.querySelectorAll("span.math.display");
+    displaySpans.forEach(el => {
+      if (el.querySelector(".katex")) return; // already rendered
+      const tex = stripMathDelims(el.textContent.trim());
+      try {
+        katex.render(tex, el, {
+          displayMode: true,
+          throwOnError: false,
+          macros: KATEX_MACROS
+        });
+      } catch (_) {}
+    });
+  }
+
+  function renderDelimiterMath() {
+    if (typeof renderMathInElement !== "function") return;
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$",  right: "$",  display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+      throwOnError: false,
+      macros: KATEX_MACROS,
+      // prevent messing with already-rendered KaTeX or Pandoc math spans
+      ignoredTags: ["script","noscript","style","textarea","pre","code","option"],
+      ignoredClasses: ["katex", "math"]
+    });
+  }
+
+  // Wait until KaTeX + auto-render are actually loaded (no race)
+  function boot() {
+    if (!window.katex || typeof window.renderMathInElement !== "function") {
+      setTimeout(boot, 30);
+      return;
+    }
+    // Order matters: render $$..$$ first, then render pandoc spans
+    renderDelimiterMath();
+    renderPandocMathSpans();
+  }
+
+  document.addEventListener("DOMContentLoaded", boot);
+})();
+</script>

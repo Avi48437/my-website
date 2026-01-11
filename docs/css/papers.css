@@ -1,0 +1,31 @@
+/* Body text */
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.65;
+  font-size: 17px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 200;
+  margin-top: 2.2em;
+}
+
+/* Math */
+.MathJax {
+  font-size: 60%;
+}
+
+/* R output */
+pre {
+  background: #f8f8f8;
+  border-left: 4px solid #999;
+  padding: 0.8em;
+}
+
+/* Figures */
+figure {
+  text-align: center;
+  margin: 2em auto;
+}

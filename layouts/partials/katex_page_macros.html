@@ -1,0 +1,6 @@
+{{- /* Inject per-page KaTeX macros into a global variable */ -}}
+{{- $pageMacros := .Params.katex_macros | default (index .Params "katex-macros") | default (dict) -}}
+
+<script>
+  window.KATEX_PAGE_MACROS = {{ $pageMacros | jsonify | safeJS }};
+</script>

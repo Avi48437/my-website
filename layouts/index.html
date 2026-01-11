@@ -2,45 +2,76 @@
 
 <section class="hero">
   <div class="hero-overlay">
-   <div class="hero-inner">
-    <div class="hero-photo">
-      <img src="{{ "images/profile.jpg" | relURL }}"
-           alt="Avinandan Roy"
-           class="hero-img" />
+
+    <div class="hero-inner">
+
+      <!-- LEFT COLUMN -->
+      <div class="hero-left">
+
+        <div class="hero-photo">
+          <img src="{{ "images/profile.jpg" | relURL }}"
+               alt="Avinandan Roy"
+               class="hero-img">
+        </div>
+
+        <h1>Hi, I’m Avinandan</h1>
+
+        <p class="hero-lead">
+          Student | Mathematics | Statistics
+        </p>
+
+        <p>
+          Welcome to my homepage. I am currently a 1st yr. PhD. student at
+          <a href="https://sds.wustl.edu/" target="_blank" rel="noopener"
+          style="color:#a51417;font-weight:600;">
+            Statistics & Data Science
+          </a> department at
+          <a href="https://washu.edu/" target="_blank" rel="noopener"
+          style="color:#a51417;font-weight:600;">
+            Washington University in St. Louis
+          </a>.
+        </p>
+
+        <blockquote class="hero-quote">
+           “What is mathematics? It is only a systematic effort of solving puzzles posed by nature.”
+           <br>
+           <span class="hero-quote-author">— Shakuntala Devi</span>
+         </blockquote>
+
+        <nav class="hero-nav">
+          <a href="{{ "bio/" | relURL }}">Bio</a>
+          <a href="{{ "notes/" | relURL }}">Notes</a>
+          <a href="{{ "blogs/" | relURL }}">Blogs</a>
+          <a href="{{ "travel/" | relURL }}">Travel</a>
+        </nav>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+<div class="hero-right">
+  <h3 style="margin-bottom:1rem;">Recent</h3>
+
+  {{ $pages := where .Site.RegularPages "Section" "not in" (slice "bio" "contact" "links") }}
+  {{ $pages = sort $pages "Date" "desc" }}
+
+  <div class="recent-list">
+    {{ range $pages }}
+      {{ $t := .Title }}
+      {{ if or (not $t) (eq (trim $t " ") "") }}
+        {{ $t = .File.ContentBaseName }}
+      {{ end }}
+
+      <div class="recent-row">
+        <span class="recent-date">{{ .Date.Format "2006-01-02" }}</span>
+        <a class="recent-post" href="{{ .RelPermalink }}">{{ $t }}</a>
+      </div>
+    {{ end }}
+  </div>
+</div>
+
+
     </div>
 
-    <div class="hero-text">
-      <h1>Hi, I’m Avinandan</h1>
-
-      <p class="hero-lead">
-        Student | Mathematics | Statistics
-      </p>
-
-      <p>
-        Welcome to my homepage. I am currently a 1st yr. PhD. student at
-        <a href="https://sds.wustl.edu/" target="_blank" rel="noopener"
-           style="color:#a51417;font-weight:600;">
-          Statistics & Data Science
-        </a>
-        at
-        <a href="https://washu.edu/" target="_blank" rel="noopener"
-           style="color:#9c1416;font-weight:600;">
-          Washington University in St. Louis
-        </a>.
-      </p>
-
-      <blockquote class="hero-quote">
-        “Mathematics is the art of giving the same name to different things.”
-      </blockquote>
-
-      <nav class="hero-nav">
-        <a href="{{ "bio/" | relURL }}">Bio</a>
-        <a href="{{ "notes/" | relURL }}">Notes</a>
-        <a href="{{ "blogs/" | relURL }}">Blogs</a>
-        <a href="{{ "travel/" | relURL }}">Travel</a>
-      </nav>
-    </div>
-    <div>
   </div>
 </section>
 

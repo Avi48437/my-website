@@ -1,4 +1,4 @@
-baseURL = "https://avi48437.github.io/my-website/"
+baseURL = "https://avi48437.github.io/"
 publishDir = "docs"
 languageCode = "en-us"
 title = "Avi | Personal Website"
@@ -6,6 +6,7 @@ theme = "PaperMod"
 
 [params]
 customCSS = ["css/custom.css"]
+math = true
 
   [params.label]
     icon = "/images/profile.jpg"
@@ -22,6 +23,11 @@ customCSS = ["css/custom.css"]
 [params.homeInfoParams]
   Title = "Welcome 👋"
   Content = "This is my personal website where I document my learning and projects."
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [menu]
 
@@ -54,3 +60,8 @@ customCSS = ["css/custom.css"]
     name = "Contact"
     pageRef = "/contact/"
     weight = 6
+    
+  [[menu.main]]
+    name = "Paper Summary"
+    url = "/papers/"
+    weight = 7
