@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Paper Summaries on Avi | Personal Website</title>
-    <link>https://avi48437.github.io/papers/</link>
+    <link>https://avi48437.github.io/my-website/papers/</link>
     <description>Recent content in Paper Summaries on Avi | Personal Website</description>
     <generator>Hugo -- 0.154.3</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://avi48437.github.io/papers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://avi48437.github.io/my-website/papers/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nonparametric Regression Model with Tree-structured Response</title>
-      <link>https://avi48437.github.io/papers/nonparametric-regression-model-with-tree-structured-response/</link>
+      <link>https://avi48437.github.io/my-website/papers/nonparametric-regression-model-with-tree-structured-response/</link>
       <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://avi48437.github.io/papers/nonparametric-regression-model-with-tree-structured-response/</guid>
+      <guid>https://avi48437.github.io/my-website/papers/nonparametric-regression-model-with-tree-structured-response/</guid>
       <description>&lt;p&gt;The goal of this paper is to study the regression on tree-structured data as response with age as the input variable, which is one kind of object oriented data and the analysis of this is called the &lt;em&gt;Object Oriented Data Analysis&lt;/em&gt; (OODA). Aydın et al. (&lt;a href=&#34;#ref-Aydin2009PCA&#34;&gt;2009&lt;/a&gt;) took OODA on trees further by studying the dependence of the &lt;strong&gt;principal component scores&lt;/strong&gt; on &lt;strong&gt;age&lt;/strong&gt; through a &lt;strong&gt;simple linear regression analysis&lt;/strong&gt;. The authors of this paper has generalized the notion of the locally weighted smoother to the tree space. The approach is a particular optimization problem and an efficient algorithm with &lt;strong&gt;linear time&lt;/strong&gt; has been proposed for a complete solution. This paper addresses the relationship of the human brain artery trees with age.&lt;/p&gt;</description>
     </item>
   </channel>
