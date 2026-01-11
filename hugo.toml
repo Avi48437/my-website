@@ -1,4 +1,4 @@
-baseURL = "https://avi48437.github.io/"
+baseURL = "https://avi48437.github.io/my-website/"
 publishDir = "docs"
 languageCode = "en-us"
 title = "Avi | Personal Website"
